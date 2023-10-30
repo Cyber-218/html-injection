@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 0 auto;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .important {
+            color: red;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Website</h1>
+    </header>
+    <div class="container">
+        <h2>Welcome to my website!</h2>
+        <p class="important">Important notice: <span id="userInput"></span></p>
+        <p>Enter your message below:</p>
+        <textarea id="userMessage"></textarea>
+        <button onclick="addMessage()">Add Message</button>
+        <button onclick="getFileContent()">Payload HTML Injection</button>
+    </div>
+    <footer>
+        <p>Made with Cyber 218</p>
+    </footer>
+
+    <script>
+        function addMessage() {
+            var message = document.getElementById("userMessage").value;
+            document.getElementById("userInput").innerHTML = message;
+        }
+
+        function getFileContent() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("userInput").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open("GET", "Html-Injection-Payloads.txt", true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
